@@ -13,6 +13,7 @@ const Form = ({ currentId, setCurrentId }) => {
     message: "",
     tags: "",
     selectedFile: "",
+    location: "",
   });
 
   //within the store, the posts array is looped through to find a post which has an _id that is equal to the current ID, and set that as post
@@ -48,6 +49,7 @@ const Form = ({ currentId, setCurrentId }) => {
       message: "",
       tags: "",
       selectedFile: "",
+      location: "",
     });
   };
 
@@ -90,6 +92,17 @@ const Form = ({ currentId, setCurrentId }) => {
             setPostData({ ...postData, message: e.target.value })
           }
         />
+        <TextField
+          name="location"
+          variant="outlined"
+          label="Location"
+          fullWidth
+          value={postData.location}
+          onChange={(e) =>
+            setPostData({ ...postData, location: e.target.value })
+          }
+        />
+
         <TextField
           name="tags"
           variant="outlined"

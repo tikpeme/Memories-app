@@ -17,6 +17,7 @@ const postSchema = mongoose.Schema({
     type: Date,
     default: new Date(),
   },
+  location: String,
 });
 
 //Turn Schema into a model
