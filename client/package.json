@@ -16,6 +16,7 @@
     "react-file-base64": "^1.0.3",
     "react-icons": "^4.4.0",
     "react-redux": "^7.2.6",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.0",
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.1",
