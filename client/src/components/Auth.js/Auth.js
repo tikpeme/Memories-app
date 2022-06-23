@@ -9,9 +9,11 @@ import {
   Container,
   TextField,
 } from "@material-ui/core";
+import { GoogleLogin } from "react-google-login";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import useStyles from "./styles";
 import Input from "./input";
+import Icon from "./icon";
 
 function Auth() {
   const classes = useStyles();
@@ -21,9 +23,16 @@ function Auth() {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   const handleSubmit = () => {};
   const handleChange = () => {};
+  const googleSuccess = (res) => {
+    console.log(res);
+  };
+  const googleFailure = () => {
+    console.log("Google Sign In was unsuccessful. Try Again Later");
+  };
 
   const switchMode = () => {
     setIsSignup((PrevMode) => !PrevMode);
+    handleShowPassword(false);
   };
 
   console.log(isSignup);
@@ -80,6 +89,25 @@ function Auth() {
               />
             )}
           </Grid>
+          <GoogleLogin
+            clientId="709762046847-hi8jq870kagcm47o3j8vb9b4fmq6tov5.apps.googleusercontent.com"
+            render={(renderProps) => (
+              <Button
+                className={classes.googleButton}
+                color="primary"
+                fullWidth
+                onClick={renderProps.onClick}
+                disable={renderProps.disabled}
+                startIcon={<Icon />}
+                variant="contained"
+              >
+                Google Sign in
+              </Button>
+            )}
+            onSuccess={googleSuccess}
+            onFailure={googleFailure}
+            cookiePolicy="single_host_origin"
+          />
           <Button
             type="submit"
             fullWidth
