@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Avatar,
   Button,
@@ -9,24 +9,58 @@ import {
   Container,
   TextField,
 } from "@material-ui/core";
+import { useDispatch } from "react-redux";
 import { GoogleLogin } from "react-google-login";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import useStyles from "./styles";
 import Input from "./input";
 import Icon from "./icon";
 
+import { signin, signup } from "../../actions/auth";
+
+const initialState = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
+
 function Auth() {
   const classes = useStyles();
-  let [isSignup, setIsSignup] = useState(true);
+  const [isSignup, setIsSignup] = useState(true);
+  const [formData, setFormData] = useState(initialState);
   const [showPassword, setShowPassword] = useState(false);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword);
-  const handleSubmit = () => {};
-  const handleChange = () => {};
-  const googleSuccess = (res) => {
-    console.log(res);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (isSignup) {
+      dispatch(signup(formData, navigate));
+    } else {
+      dispatch(signin(formData, navigate));
+    }
   };
-  const googleFailure = () => {
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const googleSuccess = async (res) => {
+    const result = res?.profileObj;
+    const token = res?.tokenId;
+    try {
+      dispatch({ type: "AUTH", data: { result, token } });
+      navigate("/");
+    } catch (error) {
+      console.log(res);
+    }
+  };
+  const googleFailure = (error) => {
+    console.log(error);
     console.log("Google Sign In was unsuccessful. Try Again Later");
   };
 
@@ -51,17 +85,17 @@ function Auth() {
           <Grid container spacing={2}>
             {isSignup && (
               <>
-                <Grid xs={6} md={12}></Grid>
+                <Grid item={true} xs={6} md={12}></Grid>
                 <Input
-                  name="firstname"
+                  name="firstName"
                   label="First Name"
                   handleChange={handleChange}
                   autoFocus
                   half
                 ></Input>
                 <Input
-                  name="Lastname"
-                  label="First Name"
+                  name="lastName"
+                  label="Last Name"
                   handleChange={handleChange}
                   half
                 ></Input>
@@ -85,19 +119,20 @@ function Auth() {
                 name="confirmPassword"
                 label="Repeat Password"
                 handleChange={handleChange}
-                type="password"
+                type={showPassword ? "text" : "password"}
+                handleShowPassword={handleShowPassword}
               />
             )}
           </Grid>
           <GoogleLogin
-            clientId="709762046847-hi8jq870kagcm47o3j8vb9b4fmq6tov5.apps.googleusercontent.com"
+            clientId="709762046847-0fub9vs6ht1dn7gqbcg0lrgtaeih0r9i.apps.googleusercontent.com"
             render={(renderProps) => (
               <Button
                 className={classes.googleButton}
                 color="primary"
                 fullWidth
                 onClick={renderProps.onClick}
-                disable={renderProps.disabled}
+                disabled={renderProps.disabled}
                 startIcon={<Icon />}
                 variant="contained"
               >
@@ -117,8 +152,8 @@ function Auth() {
           >
             {isSignup ? "Sign Up" : "Sign In"}
           </Button>
-          <Grid container justify="flex-end">
-            <Grid item>
+          <Grid container justifyContent="flex-end">
+            <Grid item={true}>
               <Button onClick={switchMode}>
                 {isSignup
                   ? "Already have an account? Sign In"

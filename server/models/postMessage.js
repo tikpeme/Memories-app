@@ -7,10 +7,10 @@ const postSchema = mongoose.Schema({
   creator: String, // each post will have a controller
   tags: [String], //arrary of strings
   selectedFile: String, // For an image, convert image into a string with base 64
-  likeCount: {
-    //For "likeCount" sets the default number to 0
-    type: Number,
-    default: 0,
+  likes: {
+    //For "likes" sets the default number to 0
+    type: [String],
+    default: [],
   },
   createdAt: {
     //For "CreatedAt" sets default date to new date

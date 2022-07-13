@@ -6,6 +6,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import postRoutes from "./routes/posts.js"; //import router
+import userRoutes from "./routes/users.js"; //import router
 
 const app = express(); //initialize  Express application object
 dotenv.config();
@@ -18,7 +19,7 @@ app.use(cors());
 
 //Using express middleware to connect router to application
 app.use("/posts", postRoutes); // Every route in the router "postRoutes" will start with "post"
-
+app.use("/users", userRoutes);
 //Connect Server application to online MongoDB database ( Cload Atlas version)
 
 const PORT = process.env.PORT || 4000;
