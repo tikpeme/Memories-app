@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import useStyles from "./styles";
 
 import { commentPost } from "../../actions/posts";
-import { useEffect } from "react";
 
 function CommentSection({ post }) {
   const [comments, setComments] = useState(post?.comments);
