@@ -7,26 +7,25 @@ import { commentPost } from "../../actions/posts";
 import { useEffect } from "react";
 
 function CommentSection({ post }) {
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState(post?.comments);
   const [comment, setComment] = useState("");
   const user = JSON.parse(localStorage.getItem("profile"));
   const dispatch = useDispatch();
+  const commentsRef = useRef();
 
-  const handleClick = () => {
+  const handleClick = async () => {
     const finalComment = `${user.result.name} : ${comment}`;
 
-    dispatch(commentPost(finalComment, post._id));
+    const newComments = await dispatch(commentPost(finalComment, post._id));
+
+    setComments(newComments);
+    setComment("");
+
+    commentsRef.current.scrollIntoView({ behavior: "smooth" });
   };
   console.log(post);
 
   const classes = useStyles();
-
-  //check if user is logged in
-  useEffect(() => {
-    if (post?.comments?.length > 0) {
-      setComments(post.comments);
-    }
-  }, []);
 
   return (
     <div>
@@ -37,10 +36,13 @@ function CommentSection({ post }) {
             Comments
           </Typography>
           {comments.map((comment, index) => (
-            <Typography key={index} variant="subtitle1">
-              comment{index}
+            <Typography key={index} gutterBottom variant="subtitle1">
+              {console.log(typeof comment)}
+              <strong> {comment.split(": ")[0]} </strong> :
+              {comment.split(":")[1]}
             </Typography>
           ))}
+          <div ref={commentsRef} />
         </div>
         {user?.result?.name && (
           <div style={{ width: "70%" }}>
