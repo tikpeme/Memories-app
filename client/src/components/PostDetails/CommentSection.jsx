@@ -1,4 +1,4 @@
-import { TextField, Typography, Button, Paper } from "@material-ui/core";
+import { TextField, Typography, Button } from "@material-ui/core";
 import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import useStyles from "./styles";
