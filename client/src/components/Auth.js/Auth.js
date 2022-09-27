@@ -32,6 +32,8 @@ function Auth() {
   const [formData, setFormData] = useState(initialState);
   const [showPassword, setShowPassword] = useState(false);
 
+  console.log(showPassword);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleShowPassword = () =>
@@ -66,10 +68,9 @@ function Auth() {
 
   const switchMode = () => {
     setIsSignup((PrevMode) => !PrevMode);
-    handleShowPassword(false);
   };
 
-  console.log(isSignup);
+  //console.log(isSignup);
 
   return (
     <Container component="main" maxWidth="xs">

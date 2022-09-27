@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 const postSchema = mongoose.Schema({
   title: String, // each post will have a title
   message: String, // each post will have a message
+  name: String,
   creator: String, // each post will have a controller
   tags: [String], //arrary of strings
   selectedFile: String, // For an image, convert image into a string with base 64
@@ -12,6 +13,7 @@ const postSchema = mongoose.Schema({
     type: [String],
     default: [],
   },
+  comments: { type: [String], default: [] },
   createdAt: {
     //For "CreatedAt" sets default date to new date
     type: Date,

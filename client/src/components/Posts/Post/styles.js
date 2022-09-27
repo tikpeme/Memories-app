@@ -54,4 +54,8 @@ export default makeStyles({
     display: "flex",
     padding: "10px",
   },
+  cardAction: {
+    display: "block",
+    textAlign: "initial",
+  },
 });
