@@ -32,7 +32,7 @@ function Auth() {
   const [formData, setFormData] = useState(initialState);
   const [showPassword, setShowPassword] = useState(false);
 
-  console.log(showPassword);
+  console.log("Rendered Auth");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

@@ -38,7 +38,7 @@ const Form = ({
 
   useEffect(() => {
     //accepts two parameters, a call back function and a dependencey array that determins when the call back function should be run, in this case, it's when the post value changes from nothing to actual post
-    console.log(isTextfieldEmpty);
+    //console.log(isTextfieldEmpty);
 
     //Use the "useEffect" to populate the values of the form with the information from the psot ID
     if (post && isTextfieldEmpty) setPostData(post);
@@ -47,10 +47,18 @@ const Form = ({
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    //Check to see if the form is empty and avoid submitting empty posts
+
+    if (
+      postData.title.trim().length === 0 &&
+      postData.message.trim().length === 0
+    )
+      return;
+
     //check to see if the current ID is valid, if so dispatch the update function, else dispatch the create post function
     if (currentId) {
-      console.log(`Updating and dispatching ${currentId}`);
-      console.log(postData);
+      //console.log(`Updating and dispatching ${currentId}`);
+      //console.log(postData);
 
       dispatch(
         updatePost(currentId, { ...postData, name: user?.result?.name })
@@ -116,7 +124,7 @@ const Form = ({
             setIsTextfieldEmpty(false);
           }}
         />
-        {console.log("post data is" + postData.title)}
+        {/*console.log("post data is" + postData.title)*/}
         <TextField
           name="message"
           variant="outlined"

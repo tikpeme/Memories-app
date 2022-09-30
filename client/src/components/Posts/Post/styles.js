@@ -18,9 +18,12 @@ export default makeStyles({
     flexDirection: "column",
     justifyContent: "space-between",
     borderRadius: "15px",
-    //height: "100%",
     position: "relative",
     margin: "10px",
+    height: "25em",
+  },
+  cardContent: {
+    height: "10px",
   },
   overlay: {
     position: "absolute",
@@ -41,6 +44,10 @@ export default makeStyles({
     display: "flex",
     justifyContent: "space-between",
     margin: "20px",
+    border: "red solid 2px",
+    width: "auto",
+    height: "2.3rem",
+    overflow: "scroll",
   },
   title: {
     padding: "0 16px",
@@ -57,5 +64,12 @@ export default makeStyles({
   cardAction: {
     display: "block",
     textAlign: "initial",
+  },
+  detailSections: {
+    overflow: "auto",
+  },
+  cardTopSection: {
+    display: "flex",
+    border: "10px solid red",
   },
 });

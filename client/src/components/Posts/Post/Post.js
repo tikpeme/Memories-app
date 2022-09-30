@@ -73,46 +73,66 @@ const Post = ({ post, setCurrentId, setIsTextfieldEmpty }) => {
           image={post.selectedFile}
           title={post.title}
         />
-        <div className={classes.overlay}>
-          <Typography variant="h6">{post.name}</Typography>
-          <Typography variant="body2">
-            {moment(post.createdAt).fromNow()}
-          </Typography>
-        </div>
-        {(user?.result?.googleId === post?.creator ||
-          user?.result?._id === post?.creator) && (
-          <div className={classes.overlay2}>
-            <Button
-              style={{ color: "white" }}
-              size="small"
-              onClick={(e) => {
-                e.stopPropagation();
-                setCurrentId(post._id);
-                setIsTextfieldEmpty(true);
+        <div className={classes.cardTopSection}>
+          <div className={classes.overlay}>
+            <Typography
+              variant="h6"
+              style={{
+                border: "1px solid red",
+                whiteSpace: "nowrap",
+                overflow: "scroll",
+                height: "2rem",
+                width: "8.5rem",
               }}
             >
-              <MoreHorizIcon fontSize="medium" />
-            </Button>
+              {post.name}
+            </Typography>
+            <Typography variant="body2" style={{ position: "absolute" }}>
+              {moment(post.createdAt).fromNow()}
+            </Typography>
           </div>
-        )}
-        <div className={classes.details}>
-          <Typography variant="body2" color="textSecondary">
-            {post.tags.map((tag) => `#${tag} `)}
-          </Typography>
+          {(user?.result?.googleId === post?.creator ||
+            user?.result?._id === post?.creator) && (
+            <div className={classes.overlay2}>
+              <Button
+                style={{ color: "white" }}
+                size="small"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setCurrentId(post._id);
+                  setIsTextfieldEmpty(true);
+                }}
+              >
+                <MoreHorizIcon fontSize="medium" />
+              </Button>
+            </div>
+          )}
         </div>
-        <Typography className={classes.title} variant="h5" gutterBottom>
-          {post.title}
-        </Typography>
-        <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {post.message}
+        <div className={classes.detailSections}>
+          <div className={classes.details}>
+            <Typography variant="body2" color="textSecondary">
+              {post.tags.map((tag) => `#${tag} `)}
+            </Typography>
+          </div>
+          <Typography className={classes.title} variant="h5" gutterBottom>
+            {post.title}
           </Typography>
-        </CardContent>
-        <div className={classes.location}>
-          <MdLocationPin />
-          <Typography variant="body2" color="textSecondary" component="p">
-            {post.location}
-          </Typography>
+          <CardContent>
+            <Typography
+              variant="body2"
+              color="textSecondary"
+              component="p"
+              //noWrap="true"
+            >
+              {post.message}
+            </Typography>
+          </CardContent>
+          <div className={classes.location}>
+            <MdLocationPin />
+            <Typography variant="body2" color="textSecondary" component="p">
+              {post.location}
+            </Typography>
+          </div>
         </div>
       </ButtonBase>
 

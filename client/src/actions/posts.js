@@ -57,7 +57,7 @@ export const createPost = (post, navigate) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
     const { data } = await api.createPost(post); //This is making a POST API request to the backend server, to send a post
-    navigate(`/post/${data._id}`);
+    navigate(`/posts/${data._id}`);
     console.log("successfully API call");
     dispatch({ type: CREATE, payload: data });
     //console.log("successfully dispatch CREATE");
