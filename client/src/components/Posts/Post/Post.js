@@ -73,51 +73,55 @@ const Post = ({ post, setCurrentId, setIsTextfieldEmpty }) => {
           image={post.selectedFile}
           title={post.title}
         />
-        <div className={classes.cardTopSection}>
-          <div className={classes.overlay}>
-            <Typography
-              variant="h6"
-              style={{
-                border: "1px solid red",
-                whiteSpace: "nowrap",
-                overflow: "scroll",
-                height: "2rem",
-                width: "8.5rem",
+        <div className={classes.overlay}>
+          <Typography
+            variant="h6"
+            style={{
+              border: "1px solid red",
+              whiteSpace: "nowrap",
+              overflow: "scroll",
+              height: "2rem",
+              width: "8.5rem",
+            }}
+          >
+            {post.name}
+          </Typography>
+          <Typography variant="body2" style={{ position: "absolute" }}>
+            {moment(post.createdAt).fromNow()}
+          </Typography>
+        </div>
+        {(user?.result?.googleId === post?.creator ||
+          user?.result?._id === post?.creator) && (
+          <div className={classes.overlay2}>
+            <Button
+              style={{ color: "white" }}
+              size="small"
+              onClick={(e) => {
+                e.stopPropagation();
+                setCurrentId(post._id);
+                setIsTextfieldEmpty(true);
               }}
             >
-              {post.name}
-            </Typography>
-            <Typography variant="body2" style={{ position: "absolute" }}>
-              {moment(post.createdAt).fromNow()}
-            </Typography>
+              <MoreHorizIcon fontSize="medium" />
+            </Button>
           </div>
-          {(user?.result?.googleId === post?.creator ||
-            user?.result?._id === post?.creator) && (
-            <div className={classes.overlay2}>
-              <Button
-                style={{ color: "white" }}
-                size="small"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setCurrentId(post._id);
-                  setIsTextfieldEmpty(true);
-                }}
-              >
-                <MoreHorizIcon fontSize="medium" />
-              </Button>
-            </div>
-          )}
-        </div>
+        )}
+
         <div className={classes.detailSections}>
-          <div className={classes.details}>
+          <div className={classes.tagsSection}>
             <Typography variant="body2" color="textSecondary">
               {post.tags.map((tag) => `#${tag} `)}
             </Typography>
           </div>
-          <Typography className={classes.title} variant="h5" gutterBottom>
-            {post.title}
-          </Typography>
-          <CardContent>
+          <hr style={{ padding: "0px" }} />
+
+          <div className={classes.titleSection}>
+            <Typography className={classes.title} variant="h5" gutterBottom>
+              {post.title}
+            </Typography>
+          </div>
+          <hr style={{ padding: "0px" }} />
+          <CardContent className={classes.messageSection}>
             <Typography
               variant="body2"
               color="textSecondary"
