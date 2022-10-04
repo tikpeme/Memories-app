@@ -77,7 +77,6 @@ const Post = ({ post, setCurrentId, setIsTextfieldEmpty }) => {
           <Typography
             variant="h6"
             style={{
-              border: "1px solid red",
               whiteSpace: "nowrap",
               overflow: "scroll",
               height: "2rem",
