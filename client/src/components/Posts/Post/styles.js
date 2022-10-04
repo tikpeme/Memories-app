@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 export default makeStyles({
   media: {
     height: 0,
-    paddingTop: "6rem",
+    paddingTop: "8rem",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     backgroundBlendMode: "darken",
   },
@@ -20,7 +20,7 @@ export default makeStyles({
     borderRadius: "15px",
     position: "relative",
     margin: "10px",
-    height: "25em",
+    height: "27em",
   },
   cardContent: {
     height: "10px",
@@ -55,7 +55,7 @@ export default makeStyles({
     justifyContent: "space-between",
     //border: "red solid 2px",
     //width: "auto",
-    height: "3.6rem",
+    height: "3.5rem",
     overflow: "scroll",
   },
   title: {
@@ -83,7 +83,7 @@ export default makeStyles({
   },
   messageSection: {
     padding: "0 16px",
-    height: "6.5rem",
+    height: "5.5rem",
     overflow: "scroll",
     //border: "1px solid red",
   },
