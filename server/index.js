@@ -20,8 +20,12 @@ app.use(cors());
 //Using express middleware to connect router to application
 app.use("/posts", postRoutes); // Every route in the router "postRoutes" will start with "post"
 app.use("/users", userRoutes);
-//Connect Server application to online MongoDB database ( Cload Atlas version)
 
+app.get("/", (req, res) => {
+  res.send("APP IS RUNNING.");
+});
+
+//Connect Server application to online MongoDB database ( Cload Atlas version)
 const PORT = process.env.PORT || 4000;
 
 mongoose
