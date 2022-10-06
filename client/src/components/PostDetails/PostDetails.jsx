@@ -4,13 +4,13 @@ import {
   Paper,
   Typography,
   Divider,
-  Card,
   CircularProgress,
 } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { getPost, getPostsBySearch } from "../../actions/posts";
+import { MdLocationPin } from "react-icons/md";
 
 import CommentSection from "./CommentSection";
 
@@ -75,11 +75,16 @@ function PostDetails() {
           <Typography gutterBottom variant="body1" component="p">
             {post.message}
           </Typography>
-          <Typography gutterBottom variant="body1" component="p">
+          <Typography
+            gutterBottom
+            variant="body1"
+            component="p"
+            style={{ fontSize: "16px" }}
+          >
             Location: {post.location}
           </Typography>
           {post.name && (
-            <Typography variant="h6">
+            <Typography variant="h6" style={{ fontSize: "16px" }}>
               Created by:
               <Link
                 to={`/creators/${post.name}`}
@@ -92,10 +97,10 @@ function PostDetails() {
           <Typography variant="body1">
             {moment(post.createdAt).fromNow()}
           </Typography>
-          <Divider style={{ margin: "20px 0" }} />
+          {/*<Divider style={{ margin: "20px 0" }} />
           <Typography variant="body1">
             <strong>Realtime Chat - coming soon!</strong>
-          </Typography>
+          </Typography>*/}
           <Divider style={{ margin: "20px 0" }} />
           <CommentSection post={post} />
           <Divider style={{ margin: "20px 0" }} />
@@ -137,18 +142,19 @@ function PostDetails() {
                     {title}
                   </Typography>
                   <Typography gutterBottom variant="subtitle2">
-                    {name}
+                    By: {name}
                   </Typography>
                   <Typography gutterBottom variant="subtitle2">
                     {message}
                   </Typography>
                   <Typography gutterBottom variant="subtitle2">
+                    <MdLocationPin />
                     {location}
                   </Typography>
                   <Typography gutterBottom variant="subtitle1">
                     Likes: {likes.length}
                   </Typography>
-                  <img src={selectedFile} width="200px" />
+                  <img src={selectedFile} width="200px" alt={title} />
                 </div>
               )
             )}

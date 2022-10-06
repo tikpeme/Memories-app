@@ -6,6 +6,9 @@ export default makeStyles((theme) => ({
     objectFit: "cover",
     width: "100%",
     maxHeight: "600px",
+    [theme.breakpoints.down("sm")]: {
+      width: "310px",
+    },
   },
   card: {
     display: "flex",
@@ -19,11 +22,18 @@ export default makeStyles((theme) => ({
     borderRadius: "20px",
     margin: "10px",
     flex: 1,
+    [theme.breakpoints.down("sm")]: {
+      width: "310px",
+    },
   },
   imageSection: {
     marginLeft: "20px",
     [theme.breakpoints.down("sm")]: {
       marginLeft: 0,
+      width: "250px",
+    },
+    [theme.breakpoints.up("lg")]: {
+      width: "50%",
     },
   },
   recommendedPosts: {
