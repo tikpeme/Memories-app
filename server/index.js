@@ -25,11 +25,13 @@ app.get("/", (req, res) => {
   res.send("APP IS RUNNING.");
 });
 
+const CONNECTION_URL =
+  "mongodb+srv://tikpeme:tikpeme123@cluster0.ycy3k.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 //Connect Server application to online MongoDB database ( Cload Atlas version)
 const PORT = process.env.PORT || 4000;
 
 mongoose
-  .connect(process.env.CONNECTION_URL, {
+  .connect(CONNECTION_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -38,4 +40,4 @@ mongoose
   ) //If connection is successful then call our "App)"
   .catch((error) => console.log(error.message));
 
-//mongoose.set('useFindAndModify',false)
+//mongoose.set("useFindAndModify", false);
