@@ -21,14 +21,14 @@ console.log("runing on heroku");
 app.use("/posts", postRoutes); // Every route in the router "postRoutes" will start with "post"
 app.use("/users", userRoutes);
 
-app.get("/", (req, res) => {
-  res.send("APP IS RUNNING.");
-});
-
 const CONNECTION_URL =
   "mongodb+srv://tikpeme:tikpeme123@cluster0.ycy3k.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 //Connect Server application to online MongoDB database ( Cload Atlas version)
 const PORT = process.env.PORT || 4000;
+
+app.get("/", (req, res) => {
+  res.send("APP IS RUNNING.");
+});
 
 mongoose
   .connect(CONNECTION_URL, {
@@ -36,7 +36,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() =>
-    app.listen(4000, () => console.log(`server running on port: ${PORT}`))
+    app.listen(PORT, () => console.log(`server running on port: ${PORT}`))
   ) //If connection is successful then call our "App)"
   .catch((error) => console.log(error.message));
 
