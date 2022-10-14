@@ -1,7 +1,8 @@
 import axios from "axios"; //Use to make api calls
 
-const API = axios.create({ baseURL: "http://localhost:4000" }); // this returns all the posts we have in the database
-
+const API = axios.create({
+  baseURL: "https://mern-memories-fullstack-app.herokuapp.com/",
+}); // this returns all the posts we have in the database
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("profile")) {
     req.headers.Authorization = `Bearer ${
