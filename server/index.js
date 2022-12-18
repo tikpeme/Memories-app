@@ -16,7 +16,7 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 
 app.use(cors());
-console.log("runing on heroku");
+
 //Using express middleware to connect router to application
 app.use("/posts", postRoutes); // Every route in the router "postRoutes" will start with "post"
 app.use("/users", userRoutes);
