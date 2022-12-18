@@ -47,7 +47,7 @@ export default makeStyles({
     //border: "red solid 2px",
     width: "auto",
     height: "2.3rem",
-    overflow: "scroll",
+    overflow: "auto",
     //marginBottom: "0",
   },
   titleSection: {
@@ -56,7 +56,7 @@ export default makeStyles({
     //border: "red solid 2px",
     //width: "auto",
     height: "3.5rem",
-    overflow: "scroll",
+    overflow: "auto",
   },
   title: {
     padding: "0 16px",
@@ -84,7 +84,7 @@ export default makeStyles({
   messageSection: {
     padding: "0 16px",
     height: "5.5rem",
-    overflow: "scroll",
+    overflow: "auto",
     //border: "1px solid red",
   },
 });

@@ -78,7 +78,7 @@ const Post = ({ post, setCurrentId, setIsTextfieldEmpty }) => {
             variant="h6"
             style={{
               whiteSpace: "nowrap",
-              overflow: "scroll",
+              overflow: "auto",
               height: "2rem",
               width: "8.5rem",
             }}

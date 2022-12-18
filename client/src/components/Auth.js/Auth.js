@@ -125,7 +125,7 @@ function Auth() {
               />
             )}
           </Grid>
-          <GoogleLogin
+          {/*<GoogleLogin
             clientId="709762046847-0fub9vs6ht1dn7gqbcg0lrgtaeih0r9i.apps.googleusercontent.com"
             render={(renderProps) => (
               <Button
@@ -143,7 +143,7 @@ function Auth() {
             onSuccess={googleSuccess}
             onFailure={googleFailure}
             cookiePolicy="single_host_origin"
-          />
+            />*/}
           <Button
             type="submit"
             fullWidth
